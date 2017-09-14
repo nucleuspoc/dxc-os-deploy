@@ -1,0 +1,6 @@
+export GOVC_INSECURE=1
+export GOVC_URL=ukrdvmgvc001.dbpoc.uk
+export GOVC_USERNAME=username
+export GOVC_PASSWORD=password
+export GOVC_DATACENTER=Reading-Dev
+
