@@ -41,11 +41,14 @@ wait $(jobs -p)
 
 
 for server in "${servers[@]}"; do 
-	ansible all -i=",$server" --become -m lineinfile -a "path=/etc/yum.conf regexp='^proxy=' line='proxy=http://16.85.88.10:8080'" &
+	ansible all -i=",$server" --become -m lineinfile -a "path=/etc/yum.conf regexp='^proxy=' line='proxy=http://16.85.88.10:8080'"
+	ansible all -i=",$server" --become -m firewalld  -a "port=2379/tcp state=enabled permanent=true"
+
 
 done
 
-kubespraypreparecommand=kubespray prepare --nodes 
+
+# kubespraypreparecommand=kubespray prepare --nodes 
 
 # for server in "${servers[@]}"; do 
 # 	kubespraypreparecommand=$kubespraypreparecommand $server[ansible_ssh_host=$server]
