@@ -41,11 +41,19 @@ wait $(jobs -p)
 
 
 for server in "${servers[@]}"; do 
-	ansible all -i=",$server" --become -m lineinfile -a "path=/etc/yum.conf regexp='^proxy=' line='proxy=http://16.85.88.10:8080'"
-	ansible all -i=",$server" --become -m firewalld  -a "port=2379/tcp state=enabled permanent=true"
-
+	ansible all -i=",$server" --become -m lineinfile -a "path=/etc/yum.conf regexp='^proxy=' line='proxy=http://16.85.88.10:8080'" || true
+	ansible all -i=",$server" --become -m shell -a "systemctl stop firewalld" || true
+	ansible all -i=",$server" --become -m shell -a "systemctl disable firewalld" || true
 
 done
+
+wait $(jobs -p)
+
+# for server in "${servers[@]}"; do 
+# 	ansible all -i=",$server" --become -m shell -a "firewall-cmd --reload"  || true &
+# done
+
+# wait $(jobs -p)
 
 
 # kubespraypreparecommand=kubespray prepare --nodes 
