@@ -70,11 +70,11 @@
   - name: remove guests
     tags: remove
     with_items: "{{ servers_with_items }}"
-    vmware_guest:
+    vsphere_guest:
       state: absent
       force: yes
-      hostname: ukrdvmgvc001.dbpoc.uk
+      vcenter_hostname: ukrdvmgvc001.dbpoc.uk
       validate_certs: no
       username: "{{my_vcuser}}"
       password: "{{my_vcpass}}"
-      name: "{{ item.name }}"
+      guest: "{{ item.name }}"
