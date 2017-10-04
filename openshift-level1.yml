@@ -4,32 +4,33 @@
   connection: local
 
  vars:
-    my_vcuser: "{{ vcuser }}"
-    my_vcpass: "{{ vcpass }}"
+    my_vcuser: "{{vcuser}}"
+    my_vcpass: "{{vcpass}}"
     domain_suffix: .dppoc.uk
     servers_with_items:
-    - name: "ocpinfranodeV{{domain_suffix}}"
+    - name: "ocpinfranodeV{{ domain_suffix }}"
       staticip: 10.0.7.139
-    - name: "ocpmasterV{{domain_suffix}}"
+    - name: "ocpmasterV{{ domain_suffix }}"
       staticip: 10.0.7.141
-    - name: "ocpmaster1V{{domain_suffix}}"
+    - name: "ocpmaster1V{{ domain_suffix }}"
       staticip: 10.0.7.140
-    - name: "ocpnode1V{{domain_suffix}}"
+    - name: "ocpnode1V{{ domain_suffix }}"
       staticip: 10.0.7.138
-    - name: "ocpnode2V{{domain_suffix}}"
+    - name: "ocpnode2V{{ domain_suffix }}"
       staticip: 10.0.7.137
   tasks:
   - name: deploy guests
     vsphere_guest:
       vcenter_hostname: ukrdvmgvc001.dbpoc.uk
-      username: "{{my_vcuser}}"
-      password: "{{my_vcpass}}"
-      guest: "{{item.name}}"
-      from_template: yes
+      username: "{{ my_vcuser }}"
+      password: "{{ my_vcpass }}"
+      guest: "{{ item.name }}"
+      from_template: yesvi
       template_src: DXC-RHEL7.4-TEMPLATE
       cluster: Reading-Dev-PoC
-      datastore:  ukrd_esx_mgmt_data_002
+      # datastore:  ukrd_esx_mgmt_data_002
       vm_extra_config:
-        ip_address: "{{item.staticip}}"
-      folder: platform/openshift
-      with_items: "{{ servers_with_items }}"
+        ip_address: "{{ item.staticip }}"
+        folder: platform/openshift
+      validate_certs: no
+    with_items: "{{ servers_with_items }}"
