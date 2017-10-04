@@ -45,6 +45,7 @@
     tags: remove
     with_items: "{{ servers_with_items }}"
     vsphere_guest:
+      guest: "{{ item.name }}"
       state: poweredoff
 
 
