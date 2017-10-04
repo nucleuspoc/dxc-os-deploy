@@ -54,7 +54,7 @@
       username: "{{my_vcuser}}"
       password: "{{my_vcpass}}"
       guest: "{{ item.name }}"
-      state: poweredoff
+      state: powered_off
 
   - name: remove guests
     tags: remove
