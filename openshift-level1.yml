@@ -63,7 +63,7 @@
       username: "{{my_vcuser}}"
       password: "{{my_vcpass}}"
       name: "{{ item.name }}"
-      state: powered_off
+      state: poweredoff
 
 
 
