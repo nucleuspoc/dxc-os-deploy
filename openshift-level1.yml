@@ -59,6 +59,7 @@
     with_items: "{{ servers_with_items }}"
     vmware_guest:
       hostname: ukrdvmgvc001.dbpoc.uk
+      datacenter: Reading-Dev
       validate_certs: no
       username: "{{my_vcuser}}"
       password: "{{my_vcpass}}"
@@ -74,6 +75,7 @@
       state: absent
       force: yes
       hostname: ukrdvmgvc001.dbpoc.uk
+      datacenter: Reading-Dev
       validate_certs: no
       username: "{{my_vcuser}}"
       password: "{{my_vcpass}}"
