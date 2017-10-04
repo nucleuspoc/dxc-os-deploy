@@ -25,15 +25,14 @@
   - name: deploy guests
     tags: deploy
     with_items: "{{ servers_with_items }}"
+    delegate_to: localhost
     vmware_guest:
-      delegate_to: localhost
       hostname: ukrdvmgvc001.dbpoc.uk
       validate_certs: no
       username: "{{my_vcuser}}"
       password: "{{my_vcpass}}"
       guest: "{{ item.name }}"
-      from_template: yes
-      template_src: DXC-RHEL7.4-TEMPLATE
+      template_: DXC-RHEL7.4-TEMPLATE
       datacenter: Reading-Dev
       cluster: Reading-Dev-PoC
       resource_pool: /Resources/Reading-Dev-PoC
