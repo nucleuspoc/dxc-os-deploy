@@ -31,8 +31,8 @@
       validate_certs: no
       username: "{{my_vcuser}}"
       password: "{{my_vcpass}}"
-      guest: "{{ item.name }}"
-      template_: DXC-RHEL7.4-TEMPLATE
+      name: "{{ item.name }}"
+      template: DXC-RHEL7.4-TEMPLATE
       datacenter: Reading-Dev
       cluster: Reading-Dev-PoC
       resource_pool: /Resources/Reading-Dev-PoC
@@ -62,7 +62,7 @@
       validate_certs: no
       username: "{{my_vcuser}}"
       password: "{{my_vcpass}}"
-      guest: "{{ item.name }}"
+      name: "{{ item.name }}"
       state: powered_off
 
 
@@ -77,5 +77,5 @@
       validate_certs: no
       username: "{{my_vcuser}}"
       password: "{{my_vcpass}}"
-      guest: "{{ item.name }}"
+      name: "{{ item.name }}"
  
