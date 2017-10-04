@@ -38,7 +38,6 @@
       cluster: Reading-Dev-PoC
       resource_pool: /Resources/Reading-Dev-PoC
       # datastore:  ukrd_esx_mgmt_data_002
-      state: powered_on
       vm_extra_config:
         ip_address: "{{ item.staticip }}"
         folder: openshift
