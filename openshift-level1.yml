@@ -20,8 +20,6 @@
     #   staticip: 10.0.7.137
 
 
-
-
 #Deploy guests with tag deploy  
   tasks:
   - name: deploy guests
@@ -41,8 +39,6 @@
       vm_extra_config:
         ip_address: "{{ item.staticip }}"
         folder: openshift
- 
-   
 
 #remove guests with tag remove
   - name: remove guests
