@@ -32,6 +32,6 @@
       # datastore:  ukrd_esx_mgmt_data_002
       vm_extra_config:
         ip_address: "{{ item.staticip }}"
-        # folder: platform\\openshift
+        folder: platform/kube/openshift
       validate_certs: no
     with_items: "{{ servers_with_items }}"
