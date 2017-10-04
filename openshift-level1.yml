@@ -26,6 +26,7 @@
     tags: deploy
     with_items: "{{ servers_with_items }}"
     vmware_guest:
+      delegate_to: localhost
       hostname: ukrdvmgvc001.dbpoc.uk
       validate_certs: no
       username: "{{my_vcuser}}"
@@ -33,6 +34,7 @@
       guest: "{{ item.name }}"
       from_template: yes
       template_src: DXC-RHEL7.4-TEMPLATE
+      datacenter : 
       cluster: Reading-Dev-PoC
       resource_pool: /Resources/Reading-Dev-PoC
       # datastore:  ukrd_esx_mgmt_data_002
