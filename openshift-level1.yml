@@ -50,6 +50,7 @@
     with_items: "{{ servers_with_items }}"
     vsphere_guest:
       state: absent
+      force: yes
       vcenter_hostname: ukrdvmgvc001.dbpoc.uk
       validate_certs: no
       username: "{{my_vcuser}}"
