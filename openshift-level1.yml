@@ -10,14 +10,14 @@
     servers_with_items:
     - name: "ocpinfranodeV{{ domain_suffix }}"
       staticip: 10.0.7.139
-    - name: "ocpmasterV{{ domain_suffix }}"
-      staticip: 10.0.7.141
-    - name: "ocpmaster1V{{ domain_suffix }}"
-      staticip: 10.0.7.140
-    - name: "ocpnode1V{{ domain_suffix }}"
-      staticip: 10.0.7.138
-    - name: "ocpnode2V{{ domain_suffix }}"
-      staticip: 10.0.7.137
+    # - name: "ocpmasterV{{ domain_suffix }}"
+    #   staticip: 10.0.7.141
+    # - name: "ocpmaster1V{{ domain_suffix }}"
+    #   staticip: 10.0.7.140
+    # - name: "ocpnode1V{{ domain_suffix }}"
+    #   staticip: 10.0.7.138
+    # - name: "ocpnode2V{{ domain_suffix }}"
+    #   staticip: 10.0.7.137
 
 
 
