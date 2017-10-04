@@ -22,8 +22,8 @@
   - name: deploy guests
     vsphere_guest:
       vcenter_hostname: ukrdvmgvc001.dbpoc.uk
-      username: "{{ my_vcuser }}"
-      password: "{{ my_vcpass }}"
+      username: "{{my_vcuser}}"
+      password: "{{my_vcpass}}"
       guest: "{{ item.name }}"
       from_template: yes
       template_src: DXC-RHEL7.4-TEMPLATE
