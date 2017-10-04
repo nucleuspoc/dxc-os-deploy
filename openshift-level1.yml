@@ -38,9 +38,21 @@
       cluster: Reading-Dev-PoC
       resource_pool: /Resources/Reading-Dev-PoC
       # datastore:  ukrd_esx_mgmt_data_002
+      state: powered_on
       vm_extra_config:
         ip_address: "{{ item.staticip }}"
         folder: openshift
+
+  - name: Register and subscribe to multiple pools.
+    
+
+    redhat_subscription:
+      state: present
+      username: "{{my_rhuser}}"
+      password: "{{my_rhuser}}"
+      pool_ids:
+        - 0123456789abcdef0123456789abcdef
+        - 1123456789abcdef0123456789abcdef
 
 
 
