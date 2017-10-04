@@ -37,11 +37,16 @@
       resource_pool: /Resources/Reading-Dev-PoC
       # datastore:  ukrd_esx_mgmt_data_002
       networks:
-        - name: Container_204 
+      - name: Container_204 
         type: static
         ip: "{{ item.staticip }}"
         netmask: 255.255.255.0
         gateway: 10.0.7.1
+        dns_servers:
+        - 30.5.86.7
+        - 30.5.86.8
+      customization:
+
         dns_servers:
         - 30.5.86.7
         - 30.5.86.8
