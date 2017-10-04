@@ -18,8 +18,14 @@
       staticip: 10.0.7.138
     - name: "ocpnode2V{{ domain_suffix }}"
       staticip: 10.0.7.137
+
+
+
+
+#Deploy guests with tag deploy  
   tasks:
   - name: deploy guests
+    tags: deploy
     vsphere_guest:
       vcenter_hostname: ukrdvmgvc001.dbpoc.uk
       username: "{{my_vcuser}}"
@@ -35,3 +41,15 @@
         folder: openshift
       validate_certs: no
     with_items: "{{ servers_with_items }}"
+
+
+
+#remove guests with tag remove
+  - name: remove guests
+    tags: remove
+    vsphere_guest:
+      state: absent
+      vcenter_hostname: ukrdvmgvc001.dbpoc.uk
+      username: "{{my_vcuser}}"
+      password: "{{my_vcpass}}"
+      guest: "{{ item.name }}"
