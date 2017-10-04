@@ -41,6 +41,14 @@
         folder: openshift
 
 #remove guests with tag remove
+  - name: power off guests
+    tags: remove
+    with_items: "{{ servers_with_items }}"
+    vsphere_guest:
+      state: poweredoff
+
+
+
   - name: remove guests
     tags: remove
     with_items: "{{ servers_with_items }}"
