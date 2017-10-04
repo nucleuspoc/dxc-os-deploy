@@ -1,0 +1,34 @@
+---
+- hosts: all
+  gather_facts: false
+  connection: local
+
+vars:
+    my_vcuser: "{{ vcuser }}"
+    my_vcpass: "{{ vcpass }}"
+    domain_suffix: .dppoc.uk
+    servers_with_items:
+    - name: "ocpinfranodeV{{domain_suffix}}"
+      staticip: 10.0.7.139
+    - name: "ocpmasterV{{domain_suffix}}"
+      staticip: 10.0.7.141
+    - name: "ocpmaster1V{{domain_suffix}}"
+      staticip: 10.0.7.140
+    - name: "ocpnode1V{{domain_suffix}}"
+      staticip: 10.0.7.138
+    - name: "ocpnode2V{{domain_suffix}}"
+      staticip: 10.0.7.137
+
+- vsphere_guest:
+    vcenter_hostname: ukrdvmgvc001.dbpoc.uk
+    username: "{{my_vcuser}}"
+    password: "{{my_vcpass}}"
+    guest: "{{item.name}}"
+    from_template: yes
+    template_src: DXC-RHEL7.4-TEMPLATE
+    cluster: Reading-Dev-PoC
+    datastore:  ukrd_esx_mgmt_data_002
+    vm_extra_config:
+      ip_address: "{{item.staticip}}"
+    folder: platform/openshift
+    with_items: "{{ servers_with_items }}"
