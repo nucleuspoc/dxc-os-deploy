@@ -41,8 +41,8 @@
       vm_extra_config:
         ip_address: "{{ item.staticip }}"
         folder: openshift
-
-
+ 
+   
 
 #remove guests with tag remove
   - name: remove guests
@@ -56,3 +56,4 @@
       username: "{{my_vcuser}}"
       password: "{{my_vcpass}}"
       guest: "{{ item.name }}"
+ 
