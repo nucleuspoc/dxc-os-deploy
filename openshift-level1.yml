@@ -26,6 +26,7 @@
   tasks:
   - name: deploy guests
     tags: deploy
+    with_items: "{{ servers_with_items }}"
     vsphere_guest:
       vcenter_hostname: ukrdvmgvc001.dbpoc.uk
       username: "{{my_vcuser}}"
@@ -40,13 +41,12 @@
         ip_address: "{{ item.staticip }}"
         folder: openshift
       validate_certs: no
-    with_items: "{{ servers_with_items }}"
-
 
 
 #remove guests with tag remove
   - name: remove guests
     tags: remove
+    with_items: "{{ servers_with_items }}"
     vsphere_guest:
       state: absent
       vcenter_hostname: ukrdvmgvc001.dbpoc.uk
