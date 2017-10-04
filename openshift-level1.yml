@@ -73,7 +73,6 @@
     with_items: "{{ servers_with_items }}"
     vmware_guest:
       state: absent
-      force: yes
       hostname: ukrdvmgvc001.dbpoc.uk
       datacenter: Reading-Dev
       validate_certs: no
