@@ -3,7 +3,7 @@
   gather_facts: false
   connection: local
 
- vars:
+  vars:
     my_vcuser: "{{vcuser}}"
     my_vcpass: "{{vcpass}}"
     domain_suffix: .dppoc.uk
