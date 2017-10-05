@@ -83,13 +83,13 @@
   - name: Remove any old keys in your host auth checker 
     tags: configure
     with_items: "{{ servers_with_items}}"
-    local_action: command ssh-keygen -R "{{item.name}}"
+    local_action: command ocpinfranodeV
 
 
   - name: Deploy key 
     tags: configure
     with_items: "{{ servers_with_items}}"
-    local_action: command sshpass -p "{{my_sshpass}}" ssh-copy-id -i "{{my_public_key}}" "{{item.name}}"
+    local_action: command sshpass -p "{{my_sshpass}}" ssh-copy-id -f -i "{{my_public_key}}" "{{item.name}}"
 
 #remove guests with tag remove
   # - name: power off guests
