@@ -14,14 +14,14 @@
     servers_with_items:
     - name: ocpinfranodeV
       staticip: 10.0.7.139
-    - name: ocpmasterV
-      staticip: 10.0.7.141
-    - name: ocpmaster1V
-      staticip: 10.0.7.140
-    - name: ocpnode1V
-      staticip: 10.0.7.138
-    - name: ocpnode2V
-      staticip: 10.0.7.137
+    # - name: ocpmasterV
+    #   staticip: 10.0.7.141
+    # - name: ocpmaster1V
+    #   staticip: 10.0.7.140
+    # - name: ocpnode1V
+    #   staticip: 10.0.7.138
+    # - name: ocpnode2V
+    #   staticip: 10.0.7.137
 
 
 
@@ -67,6 +67,7 @@
     local_action:
       module: vmware_vm_shell
       hostname:  ukrdvmgvc001.dbpoc.uk
+      validate_certs: no
       username: "{{my_vcuser}}"
       password: "{{my_vcpass}}"
       datacenter: "{{datacenter}}"
