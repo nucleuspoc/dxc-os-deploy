@@ -9,6 +9,7 @@
     my_rhpass: "{{rhpass}}"
     my_rhpass: "{{rhpass}}"
     datacenter : Reading-Dev
+    my_public_key: ~/.ssh/dxckubespraydev.pub
 
     domain_suffix: dppoc.uk
     servers_with_items:
@@ -61,34 +62,10 @@
         - 30.5.86.8
         domain: "{{ domain_suffix }}"
 
-
   - name: Deploy key 
     tags: configure
     with_items: "{{ servers_with_items}}"
-    local_action: command sshpass -p vagrant ssh-copy-id -i ~/.ssh/dxckubespraydev.pub "{{item.name}}"
-
-  # - name: shell execution
-  #   with_items: "{{ servers_with_items }}"
-  #   tags: configure
-  #   local_action:
-  #     module: vmware_vm_shell
-  #     hostname:  ukrdvmgvc001.dbpoc.uk
-  #     validate_certs: no
-  #     username: "{{my_vcuser}}"
-  #     password: "{{my_vcpass}}"
-  #     datacenter: "{{datacenter}}"
-  #     vm_id: "{{item.name}}"
-  #     vm_username: vagrant
-  #     vm_password: vagrant
-  #     vm_shell_cwd: "/tmp"
-  #     vm_shell: /home/vagrant/go.sh
-  #     # vm_shell_args: " ~/.ssh/authorized_keys /tmp"
-  #     # vm_shell_args: " $KEYTODEPLOY >> myFile "
-  #     vm_shell_env:
-  #       - "PATH=/bin"
-  #       - "KEYTODEPLOY={{ lookup('file', '~/.ssh/dxckubespraydev.pub') }}"
-
-
+    local_action: command sshpass -p vagrant ssh-copy-id -i "{{my_public_key}}" "{{item.name}}"
 
 #remove guests with tag remove
   # - name: power off guests
