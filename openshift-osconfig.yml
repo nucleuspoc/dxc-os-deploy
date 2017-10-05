@@ -13,7 +13,6 @@
   tasks:
   - name: Register and subscribe to multiple pools
     redhat_subscription:
-      tags: deploy
       state: present
       username: "{{my_rhuser}}"
       password: "{{my_rhuser}}"
