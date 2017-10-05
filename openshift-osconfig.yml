@@ -17,12 +17,11 @@
       state: present
       username: "{{my_rhuser}}"
       password: "{{my_rhuser}}"
-      pool_ids:
-       - 8a85f9815ee99f8e015ee9e09e2e7809
+      autosubscribe: true
   
-  - name: Add repositories
-    yum_repository:
-      name: "{{item}}"
-      with_items: repos
+  # - name: Add repositories
+  #   yum_repository:
+  #     name: "{{item}}"
+  #     with_items: repos
 
       
