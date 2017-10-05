@@ -35,7 +35,7 @@
       validate_certs: no
       username: "{{my_vcuser}}"
       password: "{{my_vcpass}}"
-      guest: "{{ item.name }}"
+      name: "{{ item.name }}"
       template: DXC-RHEL7.4-TEMPLATE
       cluster: Reading-Dev-PoChttp://docs.ansible.com/ansible/latest/galaxy.html
       datacenter: Reading-Dev
