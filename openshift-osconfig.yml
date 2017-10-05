@@ -8,9 +8,7 @@
       username: "{{my_rhuser}}"
       password: "{{my_rhuser}}"
       pool_ids:
-       - 0123456789abcdef0123456789abcdef
-       - 1123456789abcdef0123456789abcdef
-
+       - 8a85f9815ee99f8e015ee9e09e2e7809
   - name: Add repository
     yum_repository:
       name: epel
