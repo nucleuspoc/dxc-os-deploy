@@ -12,6 +12,7 @@
 
   tasks:
   - name: Register and subscribe to multiple pools
+    become: true
     redhat_subscription:
       state: present
       username: "{{my_rhuser}}"
