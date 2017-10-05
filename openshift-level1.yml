@@ -39,7 +39,7 @@
       template: DXC-RHEL7.4-TEMPLATE
       cluster: Reading-Dev-PoC
       datacenter: Reading-Dev
-      resource_pool: /Resources/Reading-Dev-PoC
+      resource_pool: Reading-Dev-PoC
       # datastore:  ukrd_esx_mgmt_data_002
       networks:
       - name: Containers_204
