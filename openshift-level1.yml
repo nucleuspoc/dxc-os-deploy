@@ -50,7 +50,6 @@
         - 30.5.86.7
         - 30.5.86.8
         type: static
-        vm_extra_config:
 
 
 
