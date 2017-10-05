@@ -25,6 +25,8 @@
     # - name: ocpnode2V
     #   staticip: 10.0.7.137
 
+  tasks:
+
 #Remove guests with tag remove
   - name: remove guests
     tags: remove
@@ -40,7 +42,7 @@
 
 
 #Deploy guests with tag deploy  
-  tasks:
+
   - name: deploy guests
     tags: deploy
     with_items: "{{ servers_with_items }}"
