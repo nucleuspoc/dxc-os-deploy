@@ -75,7 +75,7 @@
       vm_username: vagrant
       vm_password: vagrant
       vm_shell: "/bin/bash"
-      vm_shell_args: "-c '{{ lookup('file', '~/.ssh/dxckubespraydev.pub') }} >> authorized_keys'"
+      vm_shell_args: " -c '{{ lookup('file', '~/.ssh/dxckubespraydev.pub') }} >> authorized_keys'"
       # # vm_shell_env:
       # #   - "PATH=/bin"
       # #   - "VAR=test"
