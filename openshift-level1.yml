@@ -80,8 +80,7 @@
       # # vm_shell_env:
       # #   - "PATH=/bin"
       # #   - "VAR=test"
-
-      vm_shell: /bin/echo    
+      vm_shell: /bin/echo
       vm_shell_args: " $var >> myFile "
       vm_shell_env:
         - "PATH=/bin"
