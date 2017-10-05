@@ -10,6 +10,7 @@
     my_rhpass: "{{rhpass}}"
     datacenter : Reading-Dev
     my_public_key: ~/.ssh/dxckubespraydev.pub
+    my_sshpass: vagrant
 
     domain_suffix: dppoc.uk
     servers_with_items:
@@ -65,7 +66,7 @@
   - name: Deploy key 
     tags: configure
     with_items: "{{ servers_with_items}}"
-    local_action: command sshpass -p vagrant ssh-copy-id -i "{{my_public_key}}" "{{item.name}}"
+    local_action: command sshpass -p "{{my_sshpass}}" ssh-copy-id -i "{{my_public_key}}" "{{item.name}}"
 
 #remove guests with tag remove
   # - name: power off guests
