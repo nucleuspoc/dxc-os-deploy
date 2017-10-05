@@ -64,7 +64,7 @@
 
   - name: Deploy key 
     tags: configure
-    with_items "{{ servers_with_items}}"
+    with_items: "{{ servers_with_items}}"
     local_action: command sshpass -p vagrant ssh-copy-id -i ~/.ssh/dxckubespraydev.pub "{{item.name}}"
 
   # - name: shell execution
