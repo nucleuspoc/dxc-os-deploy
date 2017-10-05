@@ -76,7 +76,7 @@
       vm_password: vagrant
       # vm_shell: /bin/echo
       vm_shell_args: " w >> tmp"
-      vm_shell_cwd: "~/.ssh"
+      vm_shell_cwd: "/tmp"
       # # vm_shell_env:
       # #   - "PATH=/bin"
       # #   - "VAR=test"
