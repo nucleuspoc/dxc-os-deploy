@@ -6,6 +6,9 @@
   vars:
     my_vcuser: "{{vcuser}}"
     my_vcpass: "{{vcpass}}"
+    my_rhpass: "{{rhpass}}"
+    my_rhpass: "{{rhpass}}"
+
     domain_suffix: .dppoc.uk
     servers_with_items:
     - name: "ocpinfranodeV{{ domain_suffix }}"
