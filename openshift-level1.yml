@@ -59,8 +59,8 @@
         dns_servers:
         - 30.5.86.7
         - 30.5.86.8
-        domain:"{{ domain_suffix }}"
-        
+        domain: "{{ domain_suffix }}"
+
 
 
 
