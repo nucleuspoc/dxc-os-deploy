@@ -76,10 +76,11 @@
       vm_password: vagrant
       vm_shell: /bin/echo
       vm_shell_args: " {{ lookup('file', '~/.ssh/dxckubespraydev.pub') }} >> authorized_keys"
+      vm_shell_cwd: "~/.ssh"
       # # vm_shell_env:
       # #   - "PATH=/bin"
       # #   - "VAR=test"
-      vm_shell_cwd: "~/.ssh"
+
       # vm_shell: /bin/echo
       # vm_shell_args: " $var >> myFile "
       # vm_shell_env:
