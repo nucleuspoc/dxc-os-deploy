@@ -35,7 +35,7 @@
       validate_certs: no
       username: "{{my_vcuser}}"
       password: "{{my_vcpass}}"
-      name: "{{ item.name }}{{ domain_suffix }}"
+      name: "{{ item.name }}"
       template: DXC-RHEL7.4-TEMPLATE
       cluster: Reading-Dev-PoC
       datacenter: Reading-Dev
