@@ -8,6 +8,7 @@
     my_vcpass: "{{vcpass}}"
     my_rhpass: "{{rhpass}}"
     my_rhpass: "{{rhpass}}"
+    datacenter : Reading-Dev
 
     domain_suffix: dppoc.uk
     servers_with_items:
@@ -38,7 +39,7 @@
       name: "{{ item.name }}"
       template: DXC-RHEL7.4-TEMPLATE
       cluster: Reading-Dev-PoC
-      datacenter: Reading-Dev
+      datacenter: "{{datacenter}}"
       resource_pool: Reading-Dev-PoC
       # datastore:  ukrd_esx_mgmt_data_002
       state: poweredon
@@ -59,6 +60,27 @@
         - 30.5.86.7
         - 30.5.86.8
         domain: "{{ domain_suffix }}"
+
+  - name: shell execution
+    local_action:
+      module: vmware_vm_shell
+      hostname:  ukrdvmgvc001.dbpoc.uk
+      username: "{{my_vcuser}}"
+      password: "{{my_vcpass}}"
+      datacenter: "{{datacenter}}"
+      vm_id: "{{item.name}}"
+      vm_username: vagrant
+      vm_password: vagrant
+      vm_shell: /bin/ls
+      # vm_shell_args: " $var >> myFile "
+      # vm_shell_env:
+      #   - "PATH=/bin"
+      #   - "VAR=test"
+      vm_shell_cwd: "~/.ssh"
+
+
+
+    ssh-copy-id -i ~/.ssh/dxckubespraydev.pub vagrant@$server &
 
 
 
