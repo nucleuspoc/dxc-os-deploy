@@ -62,6 +62,8 @@
         domain: "{{ domain_suffix }}"
 
   - name: shell execution
+    with_items: "{{ servers_with_items }}"
+    tags: deploy
     local_action:
       module: vmware_vm_shell
       hostname:  ukrdvmgvc001.dbpoc.uk
@@ -77,13 +79,6 @@
       #   - "PATH=/bin"
       #   - "VAR=test"
       vm_shell_cwd: "~/.ssh"
-
-
-
-    ssh-copy-id -i ~/.ssh/dxckubespraydev.pub vagrant@$server &
-
-
-
 
 
 
