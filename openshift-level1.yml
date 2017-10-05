@@ -41,6 +41,7 @@
       datacenter: Reading-Dev
       resource_pool: Reading-Dev-PoC
       # datastore:  ukrd_esx_mgmt_data_002
+      state: poweredon
       hardware:
         memory_mb: 2048
         num_cpus: 2
