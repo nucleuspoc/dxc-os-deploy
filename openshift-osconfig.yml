@@ -1,5 +1,13 @@
 ---
 - hosts: openshift
+  
+  vars:
+    repos:
+      - rhel-7-server-rpms
+      - rhel-7-server-extras-rpms
+      - rhel-7-server-ose-3.6-rpms
+      - rhel-7-fast-datapath-rpms
+
   tasks:
   - name: Register and subscribe to multiple pools
     redhat_subscription:
@@ -9,7 +17,10 @@
       password: "{{my_rhuser}}"
       pool_ids:
        - 8a85f9815ee99f8e015ee9e09e2e7809
-  - name: Add repository
+  
+  - name: Add repositories
     yum_repository:
-      name: rhel-7-server-rpms
+      name: "{{item}}"
+      with_items: repos
+
       
