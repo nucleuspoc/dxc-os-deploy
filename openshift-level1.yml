@@ -46,6 +46,7 @@
     
 
     redhat_subscription:
+      tags: deploy
       state: present
       username: "{{my_rhuser}}"
       password: "{{my_rhuser}}"
