@@ -6,8 +6,6 @@
   vars:
     my_vcuser: "{{vcuser}}"
     my_vcpass: "{{vcpass}}"
-    my_rhpass: "{{rhpass}}"
-    my_rhpass: "{{rhpass}}"
     datacenter : Reading-Dev
     my_public_key: ~/.ssh/dxckubespraydev.pub
     my_sshpass: vagrant
