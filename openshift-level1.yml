@@ -41,6 +41,9 @@
       datacenter: Reading-Dev
       resource_pool: Reading-Dev-PoC
       # datastore:  ukrd_esx_mgmt_data_002
+      hardware:
+        memory_mb: 2048
+        num_cpus: 2
       networks:
       - name: Containers_204
         ip: "{{ item.staticip }}"
