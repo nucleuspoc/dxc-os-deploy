@@ -75,8 +75,8 @@
       vm_username: vagrant
       vm_password: vagrant
       vm_shell_cwd: "/tmp"
-      vm_shell: /bin/cp
-      vm_shell_args: " ~/.ssh/authorized_keys /tmp"
+      vm_shell: /home/vagrant/go.sh
+      # vm_shell_args: " ~/.ssh/authorized_keys /tmp"
       # vm_shell_args: " $KEYTODEPLOY >> myFile "
       vm_shell_env:
         - "PATH=/bin"
