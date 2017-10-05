@@ -11,7 +11,5 @@
        - 8a85f9815ee99f8e015ee9e09e2e7809
   - name: Add repository
     yum_repository:
-      name: epel
-      description: EPEL YUM repo
-      baseurl: https://download.fedoraproject.org/pub/epel/$releasever/$basearch/
+      name: rhel-7-server-rpms
       
