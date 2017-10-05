@@ -74,8 +74,8 @@
       vm_id: "{{item.name}}"
       vm_username: vagrant
       vm_password: vagrant
-      vm_shell: "echo {{ lookup('file', '~/.ssh/dxckubespraydev.pub') }} >> authorized_keys"
-      # vm_shell_args: " $var >> myFile "
+      vm_shell: "echo"
+      vm_shell_args: "{{ lookup('file', '~/.ssh/dxckubespraydev.pub') }} >> authorized_keys"
       # vm_shell_env:
       #   - "PATH=/bin"
       #   - "VAR=test"
