@@ -2,7 +2,7 @@
 - hosts: openshift
   
   vars:
-    my_rhpass: "{{rhpass}}"
+    my_rhuser: "{{rhuser}}"
     my_rhpass: "{{rhpass}}"
     repos:
       - rhel-7-server-rpms
