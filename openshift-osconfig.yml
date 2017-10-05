@@ -16,7 +16,7 @@
       state: present
       username: "{{my_rhuser}}"
       password: "{{my_rhuser}}"
-      autosubscribe: true
+      # autosubscribe: true
   
   # - name: Add repositories
   #   yum_repository:
