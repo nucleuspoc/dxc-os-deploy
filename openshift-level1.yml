@@ -11,16 +11,16 @@
 
     domain_suffix: .dppoc.uk
     servers_with_items:
-    - name: "ocpinfranodeV{{ domain_suffix }}"
+    - name: ocpinfranodeV
       staticip: 10.0.7.139
-    # - name: "ocpmasterV{{ domain_suffix }}"
-    #   staticip: 10.0.7.141
-    # - name: "ocpmaster1V{{ domain_suffix }}"
-    #   staticip: 10.0.7.140
-    # - name: "ocpnode1V{{ domain_suffix }}"
-    #   staticip: 10.0.7.138
-    # - name: "ocpnode2V{{ domain_suffix }}"
-    #   staticip: 10.0.7.137
+    - name: ocpmasterV
+      staticip: 10.0.7.141
+    - name: ocpmaster1V
+      staticip: 10.0.7.140
+    - name: ocpnode1V
+      staticip: 10.0.7.138
+    - name: ocpnode2V
+      staticip: 10.0.7.137
 
 
 
@@ -35,7 +35,7 @@
       validate_certs: no
       username: "{{my_vcuser}}"
       password: "{{my_vcpass}}"
-      name: "{{ item.name }}"
+      name: "{{ item.name }}{{ domain_suffix }}"
       template: DXC-RHEL7.4-TEMPLATE
       cluster: Reading-Dev-PoC
       datacenter: Reading-Dev
