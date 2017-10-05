@@ -80,10 +80,10 @@
 
 
 #Configure guests with tag configure
-  - name: Remove any old keys in your host auth checker 
-    tags: configure
-    with_items: "{{ servers_with_items}}"
-    local_action: command ocpinfranodeV
+  # - name: Remove any old keys in your host auth checker 
+  #   tags: configure
+  #   with_items: "{{ servers_with_items}}"
+  #   local_action: command ocpinfranodeV
 
 
   - name: Deploy key 
