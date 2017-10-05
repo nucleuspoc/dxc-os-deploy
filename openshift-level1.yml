@@ -74,18 +74,12 @@
       vm_id: "{{item.name}}"
       vm_username: vagrant
       vm_password: vagrant
-      # vm_shell: /bin/echo
-      vm_shell_args: " w >> tmp.txt"
       vm_shell_cwd: "/tmp"
-      # # vm_shell_env:
-      # #   - "PATH=/bin"
-      # #   - "VAR=test"
       vm_shell: /bin/echo
-      # vm_shell_args: " $var >> myFile "
+      vm_shell_args: " $KEYTODEPLOY >> myFile "
       vm_shell_env:
         - "PATH=/bin"
-        - "VAR=test"
-      # vm_shell_cwd: "/tmp"
+        - "KEYTODEPLOY={{ lookup('file', '~/.ssh/dxckubespraydev.pub') }}"
 
 
 
