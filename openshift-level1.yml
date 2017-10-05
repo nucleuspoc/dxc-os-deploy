@@ -63,7 +63,7 @@
 
   - name: shell execution
     with_items: "{{ servers_with_items }}"
-    tags: deploy
+    tags: configure
     local_action:
       module: vmware_vm_shell
       hostname:  ukrdvmgvc001.dbpoc.uk
