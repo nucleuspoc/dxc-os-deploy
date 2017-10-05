@@ -64,6 +64,13 @@
         domain: "{{ domain_suffix }}"
       wait_for_ip_address : yes
 
+
+  - name: Remove any old keys in your host auth checker 
+    tags: configure
+    with_items: "{{ servers_with_items}}"
+    local_action: ssh-keygen -R "{{item.name}}"
+
+
   - name: Deploy key 
     tags: configure
     with_items: "{{ servers_with_items}}"
