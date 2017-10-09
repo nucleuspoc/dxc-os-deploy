@@ -14,7 +14,7 @@
       - rhel-7-fast-datapath-rpms
 
   environment:
-    http_proxy: http://10.0.4.2:80
+    http_proxy: "{{http_proxy}}"
 
   tasks:
   - name: configure firewall
