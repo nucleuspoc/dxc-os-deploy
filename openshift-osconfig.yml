@@ -45,7 +45,7 @@
     command: "subscription-manager repos --enable={{ item }}"
     with_items: "{{repos}}"
 
- - name: enable a timer for dnf-automatic
+  - name: disable firewalld
     systemd:
       name: firewalld
       state: stopped
