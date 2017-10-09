@@ -39,7 +39,7 @@
   - name: Add repositories
     yum_repository:
       name: "{{ item }}"
-      with_items: repos
+    with_items: repos
 
       
 
