@@ -54,6 +54,6 @@
 
   - name: install the openshift installer
     yum:
-      name: httpd
+      name: atomic-openshift-utils
       state: latest
       
