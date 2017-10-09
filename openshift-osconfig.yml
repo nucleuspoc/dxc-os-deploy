@@ -32,8 +32,8 @@
       state: present
       username: "{{my_rhuser}}"
       password: "{{my_rhuser}}"
-      pool_ids: "{{redhat_openshift_sub_pool_id}}"
-        - 
+      pool_ids: 
+        - "{{redhat_openshift_sub_pool_id}}"
       # autosubscribe: true
 
 
