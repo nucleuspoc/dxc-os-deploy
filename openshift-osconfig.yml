@@ -32,7 +32,7 @@
       username: "{{my_rhuser}}"
       password: "{{my_rhuser}}"
       pool_ids:
-        -  Red Hat OpenShift, Standard Support (10 Cores, NFR, Partner Only)
+        - 8a85f981592b0c6501592be7f43b73a8
       # autosubscribe: true
 
 
