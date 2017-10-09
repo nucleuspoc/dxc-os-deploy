@@ -16,12 +16,12 @@
       staticip: 10.0.7.139
     # - name: ocpmasterV
     #   staticip: 10.0.7.141
-    # - name: ocpmaster1V
-    #   staticip: 10.0.7.140
-    # - name: ocpnode1V
-    #   staticip: 10.0.7.138
-    # - name: ocpnode2V
-    #   staticip: 10.0.7.137
+    - name: ocpmaster1V
+      staticip: 10.0.7.140
+    - name: ocpnode1V
+      staticip: 10.0.7.138
+    - name: ocpnode2V
+      staticip: 10.0.7.137
 
   tasks:
 
