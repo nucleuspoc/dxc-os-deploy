@@ -46,6 +46,7 @@
     with_items: "{{repos}}"
 
   - name: disable firewalld
+    become: true
     systemd:
       name: firewalld
       state: stopped
@@ -53,6 +54,7 @@
 
 
   - name: install the openshift installer
+    become: true
     yum:
       name: atomic-openshift-utils
       state: latest
