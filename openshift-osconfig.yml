@@ -45,7 +45,7 @@
   - name: Add repositories
     become: true
     command:
-      name: "subscription-manager --enable {{ item }}"
+      name: "subscription-manager repos --enable {{ item }}"
     with_items: repos
 
       
