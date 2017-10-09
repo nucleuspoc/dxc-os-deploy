@@ -3,7 +3,8 @@
   gather_facts: no
   
   vars:
-    my_rhuser: "{{rhuser}}"
+    # my_rhuser: "{{rhuser}}"
+    my_rhuser: "DXC1_Steven.Wake"
     my_rhpass: "{{rhpass}}"
     http_proxy: http://10.0.4.2:80
     repos:
