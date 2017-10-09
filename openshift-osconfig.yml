@@ -7,6 +7,7 @@
     my_rhuser: "DXC1_Steven.Wake"
     my_rhpass: "{{rhpass}}"
     http_proxy: http://10.0.4.2:80
+    redhat_openshift_sub_pool_id : 8a85f981592b0c6501592be7f43b73a8
     repos:
       - rhel-7-server-rpms
       - rhel-7-server-extras-rpms
@@ -31,8 +32,8 @@
       state: present
       username: "{{my_rhuser}}"
       password: "{{my_rhuser}}"
-      pool_ids:
-        - 8a85f981592b0c6501592be7f43b73a8
+      pool_ids: "{{redhat_openshift_sub_pool_id}}"
+        - 
       # autosubscribe: true
 
 
