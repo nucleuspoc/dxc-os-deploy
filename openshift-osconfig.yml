@@ -5,7 +5,7 @@
   vars:
     my_rhuser: "{{rhuser}}"
     my_rhpass: "{{rhpass}}"
-    http_proxy: http://16.85.88.10:8080
+    http_proxy: http://10.0.4.2:80
     repos:
       - rhel-7-server-rpms
       - rhel-7-server-extras-rpms
