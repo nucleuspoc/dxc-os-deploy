@@ -18,7 +18,7 @@
     http_proxy: "{{http_proxy}}"
 
   tasks:
-  - name: configure firewall
+  - name: configure proxy
     become: true
     lineinfile:
       path: /etc/yum.conf
@@ -44,8 +44,7 @@
 
   - name: Add repositories
     become: true
-    command:
-      name: "subscription-manager repos --enable={{ item }}"
+    command: "subscription-manager repos --enable={{ item }}"
     with_items: repos
 
       
