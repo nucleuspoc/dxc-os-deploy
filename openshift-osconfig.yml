@@ -50,4 +50,10 @@
       name: firewalld
       state: stopped
       enabled: false
+
+
+  - name: install the openshift installer
+    yum:
+      name: httpd
+      state: latest
       
