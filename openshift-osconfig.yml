@@ -1,5 +1,6 @@
 ---
 - hosts: openshift
+  gather_facts: no
   
   vars:
     my_rhuser: "{{rhuser}}"
