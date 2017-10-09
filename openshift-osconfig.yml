@@ -18,7 +18,7 @@
     http_proxy: "{{http_proxy}}"
 
   tasks:
-  - name: configure proxy
+  - name: configure yum proxy
     become: true
     lineinfile:
       path: /etc/yum.conf
@@ -34,20 +34,20 @@
       password: "{{my_rhuser}}"
       pool_ids: 
         - "{{redhat_openshift_sub_pool_id}}"
-      # autosubscribe: true
   
   - name: Remove all repos
     yum_repository:
       name: "*"
       state: absent
 
-
   - name: Add repositories
     become: true
     command: "subscription-manager repos --enable={{ item }}"
     with_items: "{{repos}}"
 
+ - name: enable a timer for dnf-automatic
+    systemd:
+      name: firewalld
+      state: stopped
+      enabled: false
       
-
-
-#   ansible all -i=",$server" --become -m lineinfile -a "path=/etc/yum.conf regexp='^proxy=' line='proxy=http://16.85.88.10:8080'" || true
