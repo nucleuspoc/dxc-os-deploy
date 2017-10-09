@@ -31,7 +31,11 @@
       state: present
       username: "{{my_rhuser}}"
       password: "{{my_rhuser}}"
+      pool_ids:
+        - 8a85f981592b0c6501592be7f43b73a8
       # autosubscribe: true
+
+
   
   # - name: Add repositories
   #   yum_repository:
