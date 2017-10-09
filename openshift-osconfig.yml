@@ -36,9 +36,16 @@
         - "{{redhat_openshift_sub_pool_id}}"
       # autosubscribe: true
   
-  - name: Add repositories
+  - name: Remove all repos
     yum_repository:
-      name: "{{ item }}"
+      name: "*"
+      state: absent
+
+
+  - name: Add repositories
+    become: true
+    command:
+      name: "subscription-manager --enable {{ item }}"
     with_items: repos
 
       
