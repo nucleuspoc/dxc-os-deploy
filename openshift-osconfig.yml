@@ -31,7 +31,7 @@
     redhat_subscription:
       state: present
       username: "{{my_rhuser}}"
-      password: "{{my_rhuser}}"
+      password: "{{my_rhpass}}"
       pool_ids: 
         - "{{redhat_openshift_sub_pool_id}}"
   
