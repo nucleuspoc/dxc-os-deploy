@@ -35,13 +35,11 @@
       pool_ids: 
         - "{{redhat_openshift_sub_pool_id}}"
       # autosubscribe: true
-
-
   
-  # - name: Add repositories
-  #   yum_repository:
-  #     name: "{{item}}"
-  #     with_items: repos
+  - name: Add repositories
+    yum_repository:
+      name: "{{item}}"
+      with_items: repos
 
       
 
