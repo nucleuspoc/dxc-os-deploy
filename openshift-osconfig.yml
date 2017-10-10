@@ -4,7 +4,7 @@
   
   vars:
     # my_rhuser: "{{rhuser}}"
-    my_rhuser: "DXC1_Steven.Wake"
+    my_rhuser: "DXC_Steven.Wake"
     my_rhpass: "{{rhpass}}"
     http_proxy: http://10.0.4.2:80
     redhat_openshift_sub_pool_id : 8a85f9815eb84c2f015eb8634aa42f8d
