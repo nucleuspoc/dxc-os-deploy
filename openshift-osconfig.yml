@@ -33,7 +33,7 @@
       username: "{{my_rhuser}}"
       password: "{{my_rhpass}}"
 
-  - name: subscribe to multiple pools
+  - name: subscribe to  pool
     become: true
     redhat_subscription:
       username: "{{my_rhuser}}"
