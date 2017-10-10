@@ -26,9 +26,9 @@
       line: proxy={{http_proxy}}
 
 
-  - name: Add repositories
+  - name: Register
     become: true
-    command: "subscription-manager register --username {{my_rhuser}} --password={{my_rhpass}}"
+    command: "subscription-manager register --force --username {{my_rhuser}} --password={{my_rhpass}}"
     with_items: "{{repos}}"
 
   - name: Remove all repos
@@ -36,7 +36,7 @@
       name: "*"
       state: absent
 
-  - name: subscribe to  pool
+  - name: subscribe to pool
     become: true
     redhat_subscription:
       username: "{{my_rhuser}}"
