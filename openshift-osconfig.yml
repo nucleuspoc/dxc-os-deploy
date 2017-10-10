@@ -28,7 +28,7 @@
 
   - name: Add repositories
     become: true
-    command: "subscription-manager repos register --username {{my_rhuser}} --password={{my_rhpass}}"
+    command: "subscription-manager register --username {{my_rhuser}} --password={{my_rhpass}}"
     with_items: "{{repos}}"
 
   - name: Remove all repos
