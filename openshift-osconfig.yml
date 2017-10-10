@@ -29,7 +29,6 @@
   - name: Register
     become: true
     command: "subscription-manager register --force --username {{my_rhuser}} --password={{my_rhpass}}"
-    with_items: "{{repos}}"
 
   - name: Remove all repos
     yum_repository:
