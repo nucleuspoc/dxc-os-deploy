@@ -26,12 +26,15 @@
       line: proxy={{http_proxy}}
 
 
-  - name: Register 
+  - name: Add repositories
     become: true
-    redhat_subscription:
-      state: present
-      username: "{{my_rhuser}}"
-      password: "{{my_rhpass}}"
+    command: "subscription-manager repos register --username {{my_rhuser}} --password={{my_rhpass}}"
+    with_items: "{{repos}}"
+
+  - name: Remove all repos
+    yum_repository:
+      name: "*"
+      state: absent
 
   - name: subscribe to  pool
     become: true
@@ -41,11 +44,6 @@
       pool_ids: 
         - "{{redhat_openshift_sub_pool_id}}"
   
-  - name: Remove all repos
-    yum_repository:
-      name: "*"
-      state: absent
-
   - name: Add repositories
     become: true
     command: "subscription-manager repos --enable={{ item }}"
