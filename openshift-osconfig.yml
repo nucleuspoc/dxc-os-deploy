@@ -35,27 +35,27 @@
       pool_ids: 
         - "{{redhat_openshift_sub_pool_id}}"
   
-  - name: Remove all repos
-    yum_repository:
-      name: "*"
-      state: absent
+  # - name: Remove all repos
+  #   yum_repository:
+  #     name: "*"
+  #     state: absent
 
-  - name: Add repositories
-    become: true
-    command: "subscription-manager repos --enable={{ item }}"
-    with_items: "{{repos}}"
+  # - name: Add repositories
+  #   become: true
+  #   command: "subscription-manager repos --enable={{ item }}"
+  #   with_items: "{{repos}}"
 
-  - name: disable firewalld
-    become: true
-    systemd:
-      name: firewalld
-      state: stopped
-      enabled: false
+  # - name: disable firewalld
+  #   become: true
+  #   systemd:
+  #     name: firewalld
+  #     state: stopped
+  #     enabled: false
 
 
-  - name: install the openshift installer
-    become: true
-    yum:
-      name: atomic-openshift-utils
-      state: latest
+  # - name: install the openshift installer
+  #   become: true
+  #   yum:
+  #     name: atomic-openshift-utils
+  #     state: latest
       
