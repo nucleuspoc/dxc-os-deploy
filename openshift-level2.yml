@@ -70,7 +70,16 @@
     - kexec-tools
     - sos
     - psacct
-    - docker-1.12.6
+
+  - name: Update all packages
+    become: true
+    command: yum -y update
+    with_items: "{{repos}}"
+
+  - name: Install docker
+    become: true
+    yum:
+      name: docker-1.12.6
 
   - name: install the openshift excluder
     become: true
