@@ -70,7 +70,6 @@
     - kexec-tools
     - sos
     - psacct
-    - docker-1.12.6
 
   - name: install the openshift excluder
     become: true
