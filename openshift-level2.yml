@@ -71,10 +71,10 @@
     - sos
     - psacct
 
-  - name: Update all packages
-    become: true
-    command: yum -y update
-    with_items: "{{repos}}"
+  - name: upgrade all packages
+    yum:
+      name: '*'
+      state: latest
 
   - name: Install docker
     become: true
