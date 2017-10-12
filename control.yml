@@ -55,22 +55,6 @@
       state: stopped
       enabled: false
       
-  - name: install the prerequisite packages
-    become: true
-    yum:
-      name: "{{item}}"
-    with_items:
-    - wget
-    - git
-    - net-tools
-    - bind-utils
-    - iptables-services
-    - bridge-utils
-    - bash-completion
-    - kexec-tools
-    - sos
-    - psacct
-
   - name: install the openshift excluder
     become: true
     yum:
