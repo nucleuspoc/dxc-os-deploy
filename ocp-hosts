@@ -1,0 +1,69 @@
+[infra]
+ocpinfranodeV.dbpoc.uk ansible_host=10.0.7.139
+[masters]
+ocpmaster1V.dbpoc.uk ansible_host=10.0.7.140
+ocpmasterV.dbpoc.uk ansible_host=10.0.7.141
+[cns]
+ocpnode1V.dbpoc.uk ansible_host=10.0.7.138
+ocpnode2V.dbpoc.uk ansible_host=10.0.7.137
+
+[oneview:children]
+infra
+masters
+cns
+
+[OSEv3:children]
+masters
+nodes
+etcd
+lb
+nfs
+
+[etcd]
+ocpmaster1V.dbpoc.uk
+
+[lb]
+ocpinfranodeV.dbpoc.uk
+
+[nfs]
+ocpinfranodeV.dbpoc.uk
+
+[nodes]
+ocpmaster1V.dbpoc.uk
+ocpinfranodeV.dbpoc.uk openshift_node_labels="{'region':'infra','zone':'east'}"
+ocpnode1V.dbpoc.uk openshift_node_lables="{'region':'primary','zone':'east'}"
+ocpnode2.dbpoc.uk openshift_node_lables="{'region':'primary','zone':'west'}"
+
+[OSEv3:vars]
+ansible_user=vagrant
+ansible_become=true
+ansible_become_user=root
+host_key_checking = False
+
+deployment_type=openshift-enterprise
+openshift_master_identity_providers=[{'name': 'htpasswd_auth','login': 'true', 'challenge': 'true', 'kind':'HTPasswdPasswordIdentityProvider', 'filename':'/etc/origin/master/htpasswd'}]
+openshift_master_cluster_method=native
+openshift_master_cluster_hostname=ocpmaster1V.dbpoc.uk
+openshift_master_cluster_public_hostname=ocpmaster1V.dbpoc.uk
+#openshift_dns_ip=30.5.86.7
+openshift_use_dnsmasq=true
+openshift_use_openshift_sdn=true
+os_sdn_network_plugin_name='redhat/openshift-ovs-multitenant'
+openshift_hosted_registry_storage_kind=nfs
+openshift_hosted_registry_storage_access_modes=['ReadWriteMany']
+openshift_hosted_registry_storage_nfs_directory=/exports
+openshift_hosted_registry_storage_nfs_options='*(rw,root_squash)'
+openshift_hosted_registry_storage_volume_name=registry
+openshift_hosted_registry_storage_volume_size=10Gi
+openshift_hosted_metrics_deploy=false
+openshift_hosted_logging_deploy=false
+openshift_master_default_subdomain=cloudapps2.dbpoc.uk
+openshift_master_htpasswd_users={'ocpdemousr1':'$apr1$5APM3/ip$dP1.zKrx6pRlAmk3LeIQq0','ocpdemousr2':'$apr1$JUgm7jYZ$HvFvJ.kYbnNuIC8QNxclX.', 'gluster':'$apr1$V2Hwx3rI$.jfAcQgGHP9TNThCktHBT.'}
+openshift_http_proxy=http://10.0.4.2:80
+openshift_https_proxy=http://10.0.4.2:80
+openshift_no_proxy=*.dbpoc.uk,*.cloudapps2.dbpoc.uk
+openshift_builddefaults_git_http_proxy=http://10.0.4.2:80
+openshift_builddefaults_git_https_proxy=http://10.0.4.2:80
+openshift_builddefaults_http_proxy=http://10.0.4.2:80
+openshift_builddefaults_https_proxy=http://10.0.4.2:80
+openshift_disable_check=disk_availability,docker_image_availability
