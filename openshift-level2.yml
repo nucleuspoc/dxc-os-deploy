@@ -1,6 +1,7 @@
 ---
 - hosts: openshift
   gather_facts: no
+  become: true
   
   vars:
     # my_rhuser: "{{rhuser}}"
@@ -19,7 +20,6 @@
 
   tasks:
   - name: configure yum proxy
-    become: true
     lineinfile:
       path: /etc/yum.conf
       regexp: ^proxy=
@@ -27,7 +27,6 @@
 
 
   - name: Register
-    become: true
     command: "subscription-manager register --force --username {{my_rhuser}} --password={{my_rhpass}}"
 
   - name: Remove all repos
@@ -36,7 +35,6 @@
       state: absent
 
   - name: subscribe to pool
-    become: true
     redhat_subscription:
       username: "{{my_rhuser}}"
       password: "{{my_rhpass}}"
@@ -44,19 +42,16 @@
         - "{{redhat_openshift_sub_pool_id}}"
   
   - name: Add repositories
-    become: true
     command: "subscription-manager repos --enable={{ item }}"
     with_items: "{{repos}}"
 
   - name: disable firewalld
-    become: true
     systemd:
       name: firewalld
       state: stopped
       enabled: false
       
   - name: install the prerequisite packages
-    become: true
     yum:
       name: "{{item}}"
     with_items:
@@ -77,12 +72,10 @@
       state: latest
 
   - name: Install docker
-    become: true
     yum:
       name: docker-1.12.6
 
   - name: install the openshift excluder
-    become: true
     yum:
       name: "{{item}}"
     with_items:
@@ -92,6 +85,5 @@
     - atomic-openshift-docker-excluder
 
   - name: Set up excluder
-    become: true
     command: atomic-openshift-excluder unexclude
 
