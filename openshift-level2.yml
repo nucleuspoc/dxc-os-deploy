@@ -26,6 +26,10 @@
       line: proxy={{http_proxy}}
 
 
+  - name: Clean sub subscription-manager
+    command: "subscription-manager clean"
+
+
   - name: Register
     command: "subscription-manager register --force --username {{my_rhuser}} --password={{my_rhpass}}"
 
