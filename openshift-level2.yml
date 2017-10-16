@@ -31,8 +31,8 @@
   - name: configure rhsm proxy port
     lineinfile:
       path: /etc/rhsm/rhsm.conf
-      regexp: ^proxy_proxy
-      line: proxy={{proxy_proxy}}
+      regexp: ^proxy_port
+      line: proxy={{proxy_port}}
 
 
   - name: configure yum proxy
