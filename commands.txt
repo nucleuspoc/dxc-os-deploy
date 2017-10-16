@@ -1,0 +1,47 @@
+ansible-playbook --extra-vars="vcuser=cairnsg@dbpoc.uk vcpass=Cr3mpulations" openshift-level1.yml 
+ansible-playbook  --extra-vars="rhpass=Big.red.hen" openshift-level2.yml
+
+scp ~/.ssh/dxckubespraydev ocpinfranodeV:/home/vagrant/
+scp ~/dxc-os-deploy/ocp-hosts ocpinfranodeV:/home/vagrant/
+
+
+
+
+
+
+
+ssh ocpinfranodeV
+
+sudo su
+
+export ANSIBLE_HOST_KEY_CHECKING=False
+
+mkdir ~/.ssh
+
+cp /home/vagrant/dxckubespraydev /root/.ssh/
+#rm /home/vagrant/dxckubespraydev
+
+#cp /home/vagrant/dxckubespraydev.pub /root/.ssh/
+#rm /home/vagrant/dxckubespraydev.pub
+
+touch  ~/.ssh/config
+echo Host ocp* >> ~/.ssh/config
+echo   Hostname %h >> ~/.ssh/config
+echo   PreferredAuthentications publickey,password >> ~/.ssh/config
+echo   IdentityFile ~/.ssh/dxckubespraydev >> ~/.ssh/config
+
+chmod 600 ~/.ssh/config
+
+eval $(ssh-agent)
+
+
+cp /home/vagrant/ocp-hosts ~/
+
+cd
+
+ansible OSEv3 -i ocp-hosts --private-key ~/.ssh/dxckubespraydev --become -m shell -a "mkdir /etc/ansible/facts.d"
+
+
+
+ansible-playbook -i ocp-hosts --private-key ~/.ssh/dxckubespraydev /usr/share/ansible/openshift-ansible/playbooks/byo/config.yml
+
