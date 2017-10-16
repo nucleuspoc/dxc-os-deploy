@@ -7,6 +7,8 @@
     # my_rhuser: "{{rhuser}}"
     my_rhuser: "DXC_Steven.Wake"
     my_rhpass: "{{rhpass}}"
+    proxy_hostname: 10.0.4.2
+    proxy_port: 80
     http_proxy: http://10.0.4.2:80
     redhat_openshift_sub_pool_id : 8a85f9815eb84c2f015eb8634aa42f8d
     repos:
@@ -19,6 +21,20 @@
     http_proxy: "{{http_proxy}}"
 
   tasks:
+
+  - name: configure rhsm proxy
+    lineinfile:
+      path: /etc/rhsm/rhsm.conf
+      regexp: ^proxy_hostname
+      line: proxy={{proxy_hostname}}
+
+  - name: configure rhsm proxy port
+    lineinfile:
+      path: /etc/rhsm/rhsm.conf
+      regexp: ^proxy_proxy
+      line: proxy={{proxy_proxy}}
+
+
   - name: configure yum proxy
     lineinfile:
       path: /etc/yum.conf
