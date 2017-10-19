@@ -45,3 +45,37 @@ ansible OSEv3 -i ocp-hosts --private-key ~/.ssh/dxckubespraydev --become -m shel
 
 ansible-playbook -i ocp-hosts --private-key ~/.ssh/dxckubespraydev /usr/share/ansible/openshift-ansible/playbooks/byo/config.yml
 
+
+
+Then set /etc/origin/master/master-config.yaml
+
+identityProviders:
+  - name: dbpoc
+    challenge: true
+    login: true
+    provider:
+      apiVersion: v1
+      kind: LDAPPasswordIdentityProvider
+      attributes:
+        id:
+        - dn
+        email:
+        - mail
+        name:
+        - cn
+        preferredUsername:
+        - uid
+      bindDN: "cn=george cains,cn=Users,dc=dbpoc,dc=uk"
+      bindPassword: "Cr3mpulations"
+      insecure: true
+      url: "ldap://dbpoc.uk:389/cn=Users,dc=dbpoc,dc=uk?sAMAccountName"
+  - challenge: true
+    login: true
+    mappingMethod: claim
+    name: htpasswd_auth
+    provider:
+      apiVersion: v1
+      file: /etc/origin/master/htpasswd
+      kind: HTPasswdPasswordIdentityProvider
+
+

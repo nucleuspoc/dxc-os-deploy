@@ -1,0 +1,10 @@
+url: ldap://dbpoc.uk:389
+bindDN: cn=openshift,dc=dbpoc,dc=uk
+bindPassword: Start123
+insecure: true
+baseDN: ou=Groups,ou=Openshift,dc=dbpoc,dc=uk
+scope: sub
+derefAliases: never
+timeout: 20
+filter: (objectClass=group)
+pageSize: 0
