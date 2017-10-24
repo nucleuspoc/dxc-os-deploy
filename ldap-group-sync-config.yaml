@@ -1,10 +1,22 @@
+kind: LDAPSyncConfig
+apiVersion: v1
 url: ldap://dbpoc.uk:389
-bindDN: cn=openshift,dc=dbpoc,dc=uk
-bindPassword: Start123
+bindDN: "CN=openshift,CN=Users,DC=dbpoc,DC=uk"
+bindPassword: "Start123"
 insecure: true
-baseDN: ou=Groups,ou=Openshift,dc=dbpoc,dc=uk
-scope: sub
-derefAliases: never
-timeout: 20
-filter: (objectClass=group)
-pageSize: 0
+augmentedActiveDirectory:
+    groupsQuery:
+        baseDN: "OU=Groups,OU=Openshift,dc=dbpoc,dc=uk"
+        scope: sub
+        derefAliases: never
+        pageSize: 0
+    groupUIDAttribute: dn
+    groupNameAttributes: [ cn ]
+    usersQuery:
+        baseDN: "CN=Users,DC=dbpoc,DC=uk"
+        scope: sub
+        derefAliases: never
+        filter: (objectClass=user)
+        pageSize: 0
+    userNameAttributes: [ sAMAccountName ]
+    groupMembershipAttributes: [ "memberOf" ]

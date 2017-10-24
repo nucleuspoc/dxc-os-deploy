@@ -47,7 +47,7 @@ ansible-playbook -i ocp-hosts --private-key ~/.ssh/dxckubespraydev /usr/share/an
 
 
 
-Then set /etc/origin/master/master-config.yaml
+Then set /etc/origin/master/master-config.yaml (dont forget to set password)
 
 identityProviders:
   - name: dbpoc
@@ -64,9 +64,9 @@ identityProviders:
         name:
         - cn
         preferredUsername:
-        - uid
+        - sAMAccountName
       bindDN: "cn=george cains,cn=Users,dc=dbpoc,dc=uk"
-      bindPassword: "Cr3mpulations"
+      bindPassword: "xxxxxxxxxxxxxxxxxxxx"
       insecure: true
       url: "ldap://dbpoc.uk:389/cn=Users,dc=dbpoc,dc=uk?sAMAccountName"
   - challenge: true
@@ -79,3 +79,15 @@ identityProviders:
       kind: HTPasswdPasswordIdentityProvider
 
 
+#then copy ldap-group-sync-config.yaml to server and run 
+
+oadm groups sync --sync-config=ldap-group-sync-config.yaml --confirm
+
+
+
+
+
+#MISC
+
+delete all groups 
+oc export group | grep name | cut -c 11- | tr '\n' '\0' | xargs -n1 -0 oc delete group
