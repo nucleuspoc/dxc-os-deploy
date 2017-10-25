@@ -1,14 +1,17 @@
-ansible-playbook --extra-vars="vcuser=cairnsg@dbpoc.uk vcpass=Cr3mpulations" openshift-level1.yml 
-ansible-playbook  --extra-vars="rhpass=Big.red.hen" openshift-level2.yml
+ansible-playbook --extra-vars="vcuser=cairnsg@dbpoc.uk vcpass=sssssss" openshift-level1.yml 
+ansible-playbook  --extra-vars="rhpass=sssssssss" openshift-level2.yml
+
+
+
+
+go:
+
 
 scp ~/.ssh/dxckubespraydev ocpinfranodeV:/home/vagrant/
 scp ~/dxc-os-deploy/ocp-hosts ocpinfranodeV:/home/vagrant/
 
 
-
-
-
-
+ssh-keygen -f "/home/vagrant/.ssh/known_hosts" -R ocpinfranodev
 
 ssh ocpinfranodeV
 
@@ -45,7 +48,7 @@ ansible OSEv3 -i ocp-hosts --private-key ~/.ssh/dxckubespraydev --become -m shel
 
 ansible-playbook -i ocp-hosts --private-key ~/.ssh/dxckubespraydev /usr/share/ansible/openshift-ansible/playbooks/byo/config.yml
 
-
+cd 
 
 Then set /etc/origin/master/master-config.yaml (dont forget to set password)
 
@@ -65,8 +68,8 @@ identityProviders:
         - cn
         preferredUsername:
         - sAMAccountName
-      bindDN: "cn=george cains,cn=Users,dc=dbpoc,dc=uk"
-      bindPassword: "xxxxxxxxxxxxxxxxxxxx"
+      bindDN: "cn=openshift,cn=Users,dc=dbpoc,dc=uk"
+      bindPassword: "xxxxxxxx"
       insecure: true
       url: "ldap://dbpoc.uk:389/cn=Users,dc=dbpoc,dc=uk?sAMAccountName"
   - challenge: true
@@ -78,6 +81,7 @@ identityProviders:
       file: /etc/origin/master/htpasswd
       kind: HTPasswdPasswordIdentityProvider
 
+systemctl restart atomic-openshift-master.service
 
 #then copy ldap-group-sync-config.yaml to server and run 
 
@@ -85,6 +89,56 @@ oadm groups sync --sync-config=ldap-group-sync-config.yaml --confirm
 
 
 
+
+default roles for system:authenticated and sytem:authenticated:oauth
+======================================================================
+
+from docs
+------------
+shared-resource-viewer 
+basic-user 
+self-provisioner 
+system:oauth-token-deleter
+cluster-status 
+system:webhook
+
+from app (3.5)
+-----------------
+system:build-strategy-docker-binding
+system:build-strategy-jenkinspipeline-binding
+system:build-strategy-source-binding
+system:discovery-binding
+
+
+commands
+----------------
+
+oadm policy remove-cluster-role-from-group shared-resource-viewer system:authenticated
+oadm policy remove-cluster-role-from-group basic-user system:authenticated
+oadm policy remove-cluster-role-from-group self-provisioner system:authenticated
+oadm policy remove-cluster-role-from-group system:oauth-token-deleter system:authenticated
+oadm policy remove-cluster-role-from-group cluster-status system:authenticated
+oadm policy remove-cluster-role-from-group system:webhook system:authenticated
+
+oadm policy remove-cluster-role-from-group shared-resource-viewer system:authenticated:oauth
+oadm policy remove-cluster-role-from-group basic-user system:authenticated:oauth
+oadm policy remove-cluster-role-from-group self-provisioner system:authenticated:oauth
+oadm policy remove-cluster-role-from-group system:oauth-token-deleter system:authenticated:oauth
+oadm policy remove-cluster-role-from-group cluster-status system:authenticated:oauth
+oadm policy remove-cluster-role-from-group system:webhook system:authenticated:oauth
+
+oadm policy add-cluster-role-to-group shared-resource-viewer All-Openshift-Users
+oadm policy add-cluster-role-to-group basic-user All-Openshift-Users
+oadm policy add-cluster-role-to-group self-provisioner All-Openshift-Users
+oadm policy add-cluster-role-to-group system:oauth-token-deleter All-Openshift-Users
+oadm policy add-cluster-role-to-group cluster-status All-Openshift-Users
+oadm policy add-cluster-role-to-group system:webhook All-Openshift-Users
+
+
+set up user project and give access
+-----------------------------------------
+oc new-project control-plane --description="Nucleus Control Plane Project"
+oadm policy add-role-to-group admin Control-Plane
 
 
 #MISC
