@@ -3,7 +3,7 @@ ocpinfranodeV.dbpoc.uk
 
 [ansible-control:vars]
 dxc_domain=dbpoc.uk
-dxc_dn=dc=dbpoc,dc=uk
+dxc_dn="dc=dbpoc,dc=uk"
 
 [infra]
 ocpinfranodeV.dbpoc.uk
