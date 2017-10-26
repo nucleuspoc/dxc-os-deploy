@@ -117,3 +117,5 @@
   - name: Set up excluder
     command: atomic-openshift-excluder unexclude
 
+  - name: Create facts.d folder
+    file: path=/etc/ansible/facts.d state=directory

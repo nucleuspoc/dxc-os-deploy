@@ -1,14 +1,4 @@
 ---
-- hosts: OSEv3
-  gather_facts: no
-  become: true
-
-  tasks:
-  - name: Create facts.d folder
-    file: path=/etc/ansible/facts.d state=directory
-
-
----
 - hosts: ansible-control
   gather_facts: no
   become: true
@@ -16,7 +6,7 @@
   vars:
     private_key: ~/.ssh/dxckubespraydev
     remote_home: /root
-         default_openshift_groups:
+    default_openshift_groups:
       - shared-resource-viewer 
       - basic-user 
       - self-provisioner 

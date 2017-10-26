@@ -1,5 +1,7 @@
 [ansible-control]
 ocpinfranodeV.dbpoc.uk
+
+[ansible-control:vars]
 my_openshift_ldap_password={{openshift_ldap_password}}
 dxc_domain=dbpoc.uk
 dxc_dn=dc=dbpoc,dc=uk
