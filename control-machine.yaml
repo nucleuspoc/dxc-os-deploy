@@ -48,9 +48,15 @@
 
   - name: Run installer
     command: ansible-playbook -i ocp-hosts --private-key ~/.ssh/dxckubespraydev /usr/share/ansible/openshift-ansible/playbooks/byo/config.yml
+    register: command_output
+  - debug: msg="{{command_output.stdout}}"
+
+
 
   - name: run ldap sync 
-    command: oadm groups sync --sync-config=ldap-group-sync-config.yaml --confirm
+    command: oadm groups sync --sync-config=~/ldap-group-sync-config.yaml --confirm
+    register: command_output
+  - debug: msg="{{command_output.stdout}}"
 
   - name: remove default access 1
     with_items: default_openshift_groups
