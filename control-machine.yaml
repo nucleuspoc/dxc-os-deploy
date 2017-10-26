@@ -4,7 +4,6 @@
   become: true
 
   vars:
-    my_openshift_ldap_password: "{{openshift_ldap_password}}"
     private_key: ~/.ssh/dxckubespraydev
     remote_home: /root
     default_openshift_groups:
@@ -45,6 +44,7 @@
     vars:
       my_dxc_dn: "{{dxc_dn}}"
       my_dxc_domain: "{{dxc_domain}}"
+      my_openshift_ldap_password: "{{openshift_ldap_password}}"
 
   - name: Run installer
     command: ansible-playbook -i ocp-hosts --private-key ~/.ssh/dxckubespraydev /usr/share/ansible/openshift-ansible/playbooks/byo/config.yml
