@@ -49,9 +49,9 @@
   - name: Run installer
     command: ansible-playbook -i ocp-hosts --private-key ~/.ssh/dxckubespraydev /usr/share/ansible/openshift-ansible/playbooks/byo/config.yml
     register: command_output
+    environment:
+      ANSIBLE_HOST_KEY_CHECKING: False
   - debug: msg="{{command_output.stdout}}"
-
-
 
   - name: run ldap sync 
     command: oadm groups sync --sync-config=~/ldap-group-sync-config.yaml --confirm
