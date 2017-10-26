@@ -4,6 +4,7 @@
   become: true
 
   vars:
+    my_openshift_ldap_password: "{{openshift_ldap_password}}"
     private_key: ~/.ssh/dxckubespraydev
     remote_home: /root
     default_openshift_groups:
