@@ -16,7 +16,7 @@
 
   tasks:
   - name: Create .ssh folder
-    file: path={{remote_home}}/.ssh state=directory
+    file: path={{remote_home}}/.ssh state=directory 
 
   - name: Copy private key
     copy:
@@ -27,7 +27,7 @@
     template:
       src: sshconfig.j2
       dest: "{{remote_home}}/.ssh/config"
-      mode: 600
+      mode: 0600
     vars:
       my_private_key: "{{private_key}}"
 
@@ -36,11 +36,10 @@
       src: "ocp-hosts"
       dest: "{{remote_home}}/ocp-hosts"
 
-  - name: Create ssh config
+  - name: Create ldap sync file
     template:
       src: ldap-group-sync-config.yaml.j2
       dest: "{{remote_home}}/ldap-group-sync-config.yaml"
-      mode: 600
     vars:
       my_dxc_dn: "{{dxc_dn}}"
       my_dxc_domain: "{{dxc_domain}}"
