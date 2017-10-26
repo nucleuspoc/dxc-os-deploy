@@ -1,0 +1,9 @@
+---
+- hosts: openshift
+  gather_facts: no
+  become: true
+
+  tasks:
+  - name: Clean sub subscription-manager
+    command: "echo {{openshift_master_identity_providers}}"
+
