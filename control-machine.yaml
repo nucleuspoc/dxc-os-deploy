@@ -22,6 +22,7 @@
     copy:
       src: "{{private_key}}"
       dest: "{{remote_home}}/.ssh/"
+      mode: 0400
 
   - name: Create ssh config
     template:
