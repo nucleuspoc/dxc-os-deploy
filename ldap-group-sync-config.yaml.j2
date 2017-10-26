@@ -2,7 +2,7 @@ kind: LDAPSyncConfig
 apiVersion: v1
 url: ldap://{{dxc_domain}}:389
 bindDN: "CN=openshift,CN=Users,{{my_dxc_dn}}"
-bindPassword: "{{my_openshift_password}}"
+bindPassword: "{{my_openshift_ldap_password}}"
 insecure: true
 augmentedActiveDirectory:
     groupsQuery:
