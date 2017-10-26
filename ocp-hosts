@@ -1,11 +1,11 @@
 [infra]
-ocpinfranodeV.dbpoc.uk ansible_host=10.0.7.139
+ocpinfranodeV.dbpoc.uk
 [masters]
-ocpmaster1V.dbpoc.uk ansible_host=10.0.7.140
-ocpmasterV.dbpoc.uk ansible_host=10.0.7.141
+ocpmaster1V.dbpoc.uk
+ocpmasterV.dbpoc.uk
 [cns]
-ocpnode1V.dbpoc.uk ansible_host=10.0.7.138
-ocpnode2V.dbpoc.uk ansible_host=10.0.7.137
+ocpnode1V.dbpoc.uk
+ocpnode2V.dbpoc.uk
 
 [oneview:children]
 infra
