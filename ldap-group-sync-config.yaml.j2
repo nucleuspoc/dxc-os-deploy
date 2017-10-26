@@ -1,19 +1,19 @@
 kind: LDAPSyncConfig
 apiVersion: v1
-url: ldap://dbpoc.uk:389
-bindDN: "CN=openshift,CN=Users,DC=dbpoc,DC=uk"
-bindPassword: "Start123"
+url: ldap://{{dxc_domain}}:389
+bindDN: "CN=openshift,CN=Users,{{my_dxc_dn}}"
+bindPassword: "{{my_openshift_password}}"
 insecure: true
 augmentedActiveDirectory:
     groupsQuery:
-        baseDN: "OU=Groups,OU=Openshift,dc=dbpoc,dc=uk"
+        baseDN: "OU=Groups,OU=Openshift,{{my_dxc_dn}}"
         scope: sub
         derefAliases: never
         pageSize: 0
     groupUIDAttribute: dn
     groupNameAttributes: [ cn ]
     usersQuery:
-        baseDN: "CN=Users,DC=dbpoc,DC=uk"
+        baseDN: "CN=Users,{{my_dxc_dn}}"
         scope: sub
         derefAliases: never
         filter: (objectClass=user)

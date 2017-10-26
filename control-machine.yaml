@@ -1,0 +1,80 @@
+---
+- hosts: OSEv3
+  gather_facts: no
+  become: true
+
+  tasks:
+  - name: Create facts.d folder
+    file: path=/etc/ansible/facts.d state=directory
+
+
+---
+- hosts: ansible-control
+  gather_facts: no
+  become: true
+
+  vars:
+    private_key: ~/.ssh/dxckubespraydev
+    remote_home: /root
+         default_openshift_groups:
+      - shared-resource-viewer 
+      - basic-user 
+      - self-provisioner 
+      - system:oauth-token-deleter
+      - cluster-status 
+      - system:webhook
+
+  tasks:
+  - name: Create .ssh folder
+    file: path={{remote_home}}/.ssh state=directory
+
+  - name: Copy private key
+    copy:
+      src: "{{private_key}}"
+      dest: "{{remote_home}}/.ssh/"
+
+  - name: Create ssh config
+    template:
+      src: sshconfig.j2
+      dest: "{{remote_home}}/.ssh/config"
+      mode: 600
+    vars:
+      my_private_key: "{{private_key}}"
+
+  - name: Copy hosts file
+    copy:
+      src: "{{private_key}}"
+      dest: "{{remote_home}}/ocp-hosts"
+
+  - name: Create ssh config
+    template:
+      src: ldap-group-sync-config.yaml.j2
+      dest: "{{remote_home}}/ldap-group-sync-config.yaml"
+      mode: 600
+    vars:
+      my_dxc_dn: "{{dxc_dn}}"
+      my_dxc_domain: "{{dxc_domain}}"
+
+  - name: Run installer
+    command: ansible-playbook -i ocp-hosts --private-key ~/.ssh/dxckubespraydev /usr/share/ansible/openshift-ansible/playbooks/byo/config.yml
+
+  - name: run ldap sync 
+    command: oadm groups sync --sync-config=ldap-group-sync-config.yaml --confirm
+
+  - name: remove default access 1
+    with_items: default_openshift_groups
+    command: oadm policy remove-cluster-role-from-group {{item}} system:authenticated
+
+  - name: remove default access 2
+    with_items: default_openshift_groups
+    command: oadm policy remove-cluster-role-from-group {{item}} system:authenticated:oauth
+
+  - name: set up default group access
+    with_items: default_openshift_groups
+    command: oadm policy add-cluster-role-to-group {{item}} All-Openshift-Users
+
+  - name: Create Control Plane Project
+    command: oc new-project control-plane --description="Nucleus Control Plane Project"
+
+  - name: set up default group access
+    command: oadm policy add-role-to-group admin Control-Plane
