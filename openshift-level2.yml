@@ -1,5 +1,5 @@
 ---
-- hosts: openshift
+- hosts: OSEv3
   gather_facts: no
   become: true
   
