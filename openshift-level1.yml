@@ -71,6 +71,7 @@
         num_cpus: 2
       disk: 
       - size: "{{ item.disk_size }}"
+        datastore: "{{item.datastore}}"
       networks:
       - name: Containers_204
         ip: "{{ item.staticip }}"
