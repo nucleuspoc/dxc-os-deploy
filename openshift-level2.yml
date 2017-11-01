@@ -22,6 +22,10 @@
 
   tasks:
 
+  - name: Resize system disk
+    tags: deploy
+    script: resize-system-disk.sh
+
   - name: configure rhsm proxy
     lineinfile:
       path: /etc/rhsm/rhsm.conf
@@ -104,6 +108,26 @@
   - name: Install docker
     yum:
       name: docker
+
+  - name: Docker storage | Create physical volume  
+    tags: configure
+    command: pvcreate /dev/sdb
+
+  - name: Docker storage | Create volume group  
+    tags: configure
+    command: vgcreate docker-vg /dev/sdb
+
+  - name: Docker storage | Prepare config
+    copy:
+      content: VG=docker-vg
+      dest: /etc/sysconfig/docker-storage-setup
+
+  - name: Docker storage | Run 
+    command: docker-storage-setup
+    register: docker-storage-setup-output
+
+  - debug: msg="{{docker-storage-setup-output.stdout}}"
+  - debug: msg="{{docker-storage-setup-output.stderr}}"
 
   - name: install the openshift excluder
     yum:

@@ -90,8 +90,6 @@
         domain: "{{ domain_suffix }}"
       wait_for_ip_address : yes
 
-
-
 #Configure guests with tag configure
   # - name: Remove any old keys in your host auth checker 
   #   tags: configure
@@ -99,10 +97,13 @@
   #   local_action: command ocpinfranodeV
 
 
-  - name: Deploy key 
+  - name: Configure security | Deploy key 
     tags: configure
     with_items: "{{ servers_with_items}}"
     local_action: command sshpass -p {{my_sshpass}} ssh-copy-id -o  UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -i {{my_public_key}} vagrant@{{item.name}}
+
+
+
 
 #remove guests with tag remove
   # - name: power off guests
