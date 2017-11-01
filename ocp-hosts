@@ -1,10 +1,6 @@
 [ansible-control]
 ocpinfranodeV.dbpoc.uk
 
-[ansible-control:vars]
-dxc_domain=dbpoc.uk
-dxc_dn="dc=dbpoc,dc=uk"
-
 [infra]
 ocpinfranodeV.dbpoc.uk
 [masters]
@@ -42,6 +38,9 @@ ocpnode1V.dbpoc.uk openshift_node_lables="{'region':'primary','zone':'east'}"
 ocpnode2V.dbpoc.uk openshift_node_lables="{'region':'primary','zone':'west'}"
 
 [OSEv3:vars]
+dxc_domain=dbpoc.uk
+dxc_dn="dc=dbpoc,dc=uk"
+
 ansible_user=vagrant
 ansible_become=true
 ansible_become_user=root
