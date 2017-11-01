@@ -48,7 +48,7 @@
       my_openshift_ldap_password: "{{openshift_ldap_password}}"
 
   - name: Run installer
-    command: "ansible-playbook -i {{remote_home}}/ocp-hosts --private-key {{remote_home}}/.ssh/{{private_key}} /usr/share/ansible/openshift-ansible/playbooks/byo/config.yml"
+    command: "ansible-playbook -i {{remote_home}}/ocp-hosts --private-key {{remote_home}}/.ssh/{{private_key}} --extra-vars="my_openshift_ldap_password={{openshift_ldap_password}}" /usr/share/ansible/openshift-ansible/playbooks/byo/config.yml"
     register: command_output
     environment:
       ANSIBLE_HOST_KEY_CHECKING: False
