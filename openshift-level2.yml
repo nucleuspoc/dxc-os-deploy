@@ -124,10 +124,10 @@
 
   - name: Docker storage | Run 
     command: docker-storage-setup
-    register: docker-storage-setup-output
+    register: docker_storage_setup_output
 
-  - debug: msg="{{docker-storage-setup-output.stdout}}"
-  - debug: msg="{{docker-storage-setup-output.stderr}}"
+  - debug: msg="{{docker_storage_setup_output.stdout}}"
+  - debug: msg="{{docker_storage_setup_output.stderr}}"
 
   - name: install the openshift excluder
     yum:
