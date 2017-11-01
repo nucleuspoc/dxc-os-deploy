@@ -13,23 +13,23 @@
     domain_suffix: dppoc.uk
     servers_with_items:
     - name: ocpinfranodeV
-      disk_size: 100GB
+      docker_disk_size: 100GB
       datastore: "{{vm_datastore}}"
       staticip: 10.0.7.139
     - name: ocpmasterV
-      disk_size: 100GB
+      docker_disk_size: 100GB
       datastore: "{{vm_datastore}}"
       staticip: 10.0.7.141
     - name: ocpmaster1V
-      disk_size: 100GB
+      docker_disk_size: 100GB
       datastore: "{{vm_datastore}}"
       staticip: 10.0.7.140
     - name: ocpnode1V
-      disk_size: 250GB
+      docker_disk_size: 200GB
       datastore: "{{vm_datastore}}"
       staticip: 10.0.7.138
     - name: ocpnode2V
-      disk_size: 250GB
+      docker_disk_size: 200GB
       datastore: "{{vm_datastore}}"
       staticip: 10.0.7.137
                
@@ -70,6 +70,8 @@
         memory_mb: 8192
         num_cpus: 2
       disk: 
+      - size: 20GB
+        datastore: "{{item.datastore}}"
       - size: "{{ item.disk_size }}"
         datastore: "{{item.datastore}}"
       networks:
