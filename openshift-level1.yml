@@ -72,7 +72,7 @@
       disk: 
       - size: 20GB
         datastore: "{{item.datastore}}"
-      - size: "{{ item.disk_size }}"
+      - size: "{{ item.docker_disk_size }}"
         datastore: "{{item.datastore}}"
       networks:
       - name: Containers_204
