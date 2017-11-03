@@ -10,7 +10,7 @@
     my_public_key: ~/.ssh/dxckubespraydev.pub
     my_sshpass: vagrant
     vm_datastore: ukrd_esx_mgmt_data_002
-    domain_suffix: dppoc.uk
+    domain_suffix: dbpoc.uk
     servers_with_items:
     - name: ocpinfranodeV
       docker_disk_size: 100GB

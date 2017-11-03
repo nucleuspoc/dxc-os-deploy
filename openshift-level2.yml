@@ -22,9 +22,7 @@
 
   tasks:
 
-  - name: Resize system disk
-    tags: deploy
-    script: resize-system-disk.sh
+
 
   - name: configure rhsm proxy
     lineinfile:
@@ -108,6 +106,10 @@
   - name: Install docker
     yum:
       name: docker
+
+  - name: Resize system disk
+    tags: deploy
+    script: resize-system-disk.sh
 
   - name: Docker storage | Create physical volume  
     tags: configure
