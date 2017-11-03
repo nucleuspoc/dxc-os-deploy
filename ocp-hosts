@@ -52,8 +52,7 @@ openshift_install_examples=true
 
 deployment_type=openshift-enterprise
 
-
-openshift_master_identity_providers="[{'name':'dbpoc.uk','challenge':true,'login':true,'kind':'LDAPPasswordIdentityProvider','attributes':{'id':['dn'],'email':['mail'],'name':['cn'],'preferredUsername':['sAMAccountName'],'bindDN':'cn=openshift,cn=Users,dc=dbpoc,dc=uk','bindPassword':'{{my_openshift_ldap_password}}','insecure':true,'url':'ldap://dbpoc.uk:389/cn=Users,dc=dbpoc,dc=uk?sAMAccountName'}}]"
+openshift_master_identity_providers="[{'name':'dbpoc.uk','challenge':true,'login':true,'kind':'LDAPPasswordIdentityProvider','attributes':{'id':['dn'],'email':['mail'],'name':['cn'],'preferredUsername':['sAMAccountName']},'bindDN':'cn=openshift,cn=Users,dc=dbpoc,dc=uk','bindPassword':'{{my_openshift_ldap_password}}','insecure':true,'url':'ldap://dbpoc.uk:389/cn=Users,dc=dbpoc,dc=uk?sAMAccountName'}]"
 
 openshift_master_cluster_method=native
 openshift_master_cluster_hostname=ocpmaster1V.dbpoc.uk
