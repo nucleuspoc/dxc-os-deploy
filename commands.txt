@@ -3,6 +3,8 @@ ansible-playbook  --extra-vars="rhpass=sssssssss" openshift-level2.yml
 
 
 
+ansible-playbook -i ocp-hosts control-machine.yaml --extra-args="dxc_dn=dc=dbpoc,dc=uk dxc_domain=dbpoc.uk openshift_ldap_password=Start123"
+
 
 go:
 
@@ -22,10 +24,7 @@ export ANSIBLE_HOST_KEY_CHECKING=False
 mkdir ~/.ssh
 
 cp /home/vagrant/dxckubespraydev /root/.ssh/
-#rm /home/vagrant/dxckubespraydev
 
-#cp /home/vagrant/dxckubespraydev.pub /root/.ssh/
-#rm /home/vagrant/dxckubespraydev.pub
 
 touch  ~/.ssh/config
 echo Host ocp* >> ~/.ssh/config
@@ -48,40 +47,7 @@ ansible OSEv3 -i ocp-hosts --private-key ~/.ssh/dxckubespraydev --become -m shel
 
 ansible-playbook -i ocp-hosts --private-key ~/.ssh/dxckubespraydev /usr/share/ansible/openshift-ansible/playbooks/byo/config.yml
 
-cd 
 
-Then set /etc/origin/master/master-config.yaml (dont forget to set password)
-
-identityProviders:
-  - name: dbpoc
-    challenge: true
-    login: true
-    provider:
-      apiVersion: v1
-      kind: LDAPPasswordIdentityProvider
-      attributes:
-        id:
-        - dn
-        email:
-        - mail
-        name:
-        - cn
-        preferredUsername:
-        - sAMAccountName
-      bindDN: "cn=openshift,cn=Users,dc=dbpoc,dc=uk"
-      bindPassword: "xxxxxxxx"
-      insecure: true
-      url: "ldap://dbpoc.uk:389/cn=Users,dc=dbpoc,dc=uk?sAMAccountName"
-  - challenge: true
-    login: true
-    mappingMethod: claim
-    name: htpasswd_auth
-    provider:
-      apiVersion: v1
-      file: /etc/origin/master/htpasswd
-      kind: HTPasswdPasswordIdentityProvider
-
-systemctl restart atomic-openshift-master.service
 
 #then copy ldap-group-sync-config.yaml to server and run 
 
