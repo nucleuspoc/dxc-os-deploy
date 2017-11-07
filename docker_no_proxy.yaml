@@ -1,0 +1,24 @@
+---
+- hosts: masters[0]
+
+  tasks:
+  - name: get registry cluster IP
+    shell: "oc describe svc/docker-registry -n default | egrep ^IP: | cut -d: -f2 | tr -d '[:space:]'"
+    register: result
+
+  - set_fact:
+      docker_registry_ip: "{{result.stdout}}"
+
+  - debug:
+      msg: "{{hostvars}}"
+
+- hosts: OSEv3
+  tasks:
+
+  - name: update sysconfig/docker
+    lineinfile:
+      dest: /etc/sysconfig/docker
+      regexp: "^NO_PROXY='(.*)'"
+      line:   NO_PROXY='{{ hostvars[groups['masters'][0]]['docker_registry_ip'] }},\1'
+      backrefs: yes
+      state: present
