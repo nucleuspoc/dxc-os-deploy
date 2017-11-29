@@ -14,22 +14,27 @@
     servers_with_items:
     - name: ocpinfranodeV
       docker_disk_size: 100GB
+      memory: 8192
       datastore: "{{vm_datastore}}"
       staticip: 10.0.7.139
     - name: ocpmasterV
       docker_disk_size: 100GB
+      memory: 8192
       datastore: "{{vm_datastore}}"
       staticip: 10.0.7.141
     - name: ocpmaster1V
       docker_disk_size: 100GB
+      memory: 8192
       datastore: "{{vm_datastore}}"
       staticip: 10.0.7.140
     - name: ocpnode1V
       docker_disk_size: 200GB
+      memory: 16384
       datastore: "{{vm_datastore}}"
       staticip: 10.0.7.138
     - name: ocpnode2V
       docker_disk_size: 200GB
+      memory: 16384
       datastore: "{{vm_datastore}}"
       staticip: 10.0.7.137
                
@@ -67,7 +72,7 @@
       # datastore:  ukrd_esx_mgmt_data_002
       state: poweredon
       hardware:
-        memory_mb: 8192
+        memory_mb: "{{ item.memory }}"
         num_cpus: 2
       disk: 
       - size: 20GB
