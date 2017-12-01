@@ -15,6 +15,12 @@
   tasks:
   #Remove guests with tag remove
 
+
+  - name: Unregister
+    tags: remove
+    command: "subscription-manager unregister"
+
+
   - name: remove guests
     tags: remove
     delegate_to: 127.0.0.1
