@@ -1,5 +1,5 @@
 ---
-- hosts: localhost
+- hosts: OSEv3
   gather_facts: false
   connection: local
 
@@ -39,6 +39,10 @@
       staticip: 10.0.7.137
                
   tasks:
+
+
+
+
 
 #Remove guests with tag remove
   - name: remove guests
