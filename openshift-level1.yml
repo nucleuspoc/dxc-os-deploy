@@ -1,5 +1,5 @@
 ---
-- hosts: localhost
+- hosts: OSEv3
   gather_facts: false
   connection: local
 
@@ -11,39 +11,13 @@
     my_sshpass: vagrant
     vm_datastore: ukrd_esx_mgmt_data_002
     domain_suffix: dbpoc.uk
-    servers_with_items:
-    - name: ocpinfranodeV
-      docker_disk_size: 100GB
-      memory: 8192
-      datastore: "{{vm_datastore}}"
-      staticip: 10.0.7.139
-    - name: ocpmasterV
-      docker_disk_size: 100GB
-      memory: 8192
-      datastore: "{{vm_datastore}}"
-      staticip: 10.0.7.141
-    - name: ocpmaster1V
-      docker_disk_size: 100GB
-      memory: 8192
-      datastore: "{{vm_datastore}}"
-      staticip: 10.0.7.140
-    - name: ocpnode1V
-      docker_disk_size: 200GB
-      memory: 16384
-      datastore: "{{vm_datastore}}"
-      staticip: 10.0.7.138
-    - name: ocpnode2V
-      docker_disk_size: 200GB
-      memory: 16384
-      datastore: "{{vm_datastore}}"
-      staticip: 10.0.7.137
-               
-  tasks:
 
-#Remove guests with tag remove
+
+  tasks:
+  #Remove guests with tag remove
   - name: remove guests
     tags: remove
-    with_items: "{{ servers_with_items }}"
+    delegate_to: 127.0.0.1
     vsphere_guest:
       state: absent
       force: yes
@@ -51,20 +25,20 @@
       validate_certs: no
       username: "{{my_vcuser}}"
       password: "{{my_vcpass}}"
-      guest: "{{ item.name }}"
+      guest: "{{ inventory_hostname }}"
 
 
-#Deploy guests with tag deploy  
+  #Deploy guests with tag deploy  
 
   - name: deploy guests
     tags: deploy
-    with_items: "{{ servers_with_items }}"
+    delegate_to: 127.0.0.1
     vmware_guest:
       hostname: ukrdvmgvc001.dbpoc.uk
       validate_certs: no
       username: "{{my_vcuser}}"
       password: "{{my_vcpass}}"
-      name: "{{ item.name }}"
+      name: "{{ inventory_hostname }}"
       template: DXC-RHEL7.4-TEMPLATE
       cluster: Reading-Dev-PoC
       datacenter: "{{datacenter}}"
@@ -72,16 +46,16 @@
       # datastore:  ukrd_esx_mgmt_data_002
       state: poweredon
       hardware:
-        memory_mb: "{{ item.memory }}"
+        memory_mb: "{{ memory }}"
         num_cpus: 2
       disk: 
       - size: 20GB
-        datastore: "{{item.datastore}}"
-      - size: "{{ item.docker_disk_size }}"
-        datastore: "{{item.datastore}}"
+        datastore: "{{datastore}}"
+      - size: "{{ docker_disk_size }}"
+        datastore: "{{datastore}}"
       networks:
       - name: Containers_204
-        ip: "{{ item.staticip }}"
+        ip: "{{ staticip }}"
         netmask: 255.255.255.0
         gateway: 10.0.7.1
         dns_servers:
@@ -95,14 +69,15 @@
         domain: "{{ domain_suffix }}"
       wait_for_ip_address : yes
 
-#Configure guests with tag configure
-  # - name: Remove any old keys in your host auth checker 
-  #   tags: configure
-  #   with_items: "{{ servers_with_items}}"
-  #   local_action: command ocpinfranodeV
+  #Configure guests with tag configure
+    # - name: Remove any old keys in your host auth checker 
+    #   tags: configure
+    #   with_items: "{{ servers_with_items}}"
+    #   local_action: command ocpinfranodeV
 
 
   - name: Configure security | Deploy key 
+    delegate_to: 127.0.0.1
     tags: configure
     with_items: "{{ servers_with_items}}"
     local_action: command sshpass -p {{my_sshpass}} ssh-copy-id -o  UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -i {{my_public_key}} vagrant@{{item.name}}
