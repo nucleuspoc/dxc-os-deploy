@@ -12,9 +12,9 @@
     vm_datastore: ukrd_esx_mgmt_data_002
     domain_suffix: dbpoc.uk
 
-
   tasks:
   #Remove guests with tag remove
+
   - name: remove guests
     tags: remove
     delegate_to: 127.0.0.1
@@ -80,7 +80,7 @@
     delegate_to: 127.0.0.1
     tags: configure
     with_items: "{{ servers_with_items}}"
-    local_action: command sshpass -p {{my_sshpass}} ssh-copy-id -o  UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -i {{my_public_key}} vagrant@{{item.name}}
+    local_action: command sshpass -p {{my_sshpass}} ssh-copy-id -o  UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -i {{my_public_key}} vagrant@{{ inventory_hostname}}
 
 
 
