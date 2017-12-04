@@ -10,7 +10,7 @@ ocpnode1V.dbpoc.uk			docker_disk_size=200GB memory=16384 datastore=ukrd_esx_mgmt
 ocpnode2V.dbpoc.uk			docker_disk_size=200GB memory=16384 datastore=ukrd_esx_mgmt_data_002 staticip=10.0.7.137
 
 [ansible-control]
-ocpinfranodeV.dbpoc.uk
+ocpmaster1V.dbpoc.uk
 
 [oneview:children]
 infra
@@ -80,4 +80,4 @@ openshift_builddefaults_git_http_proxy=http://10.0.4.2:80
 openshift_builddefaults_git_https_proxy=http://10.0.4.2:80
 openshift_builddefaults_http_proxy=http://10.0.4.2:80
 openshift_builddefaults_https_proxy=http://10.0.4.2:80
-openshift_disable_check=disk_availability,docker_image_availability
+openshift_disable_check=docker_storage,disk_availability,docker_image_availability
