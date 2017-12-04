@@ -56,8 +56,8 @@
 
   - name: run ldap sync 
     command: "oadm groups sync --sync-config={{remote_home}}/ldap-group-sync-config.yaml --confirm"
-    register: command_output
-  - debug: msg="{{command_output.stdout}}"
+    register: sync_output2
+    failed_when: "sync_output2.rc > 0"
 
   - name: remove default access 1
     with_items: default_openshift_groups
