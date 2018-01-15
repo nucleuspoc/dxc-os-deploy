@@ -5,7 +5,7 @@ This repository contains the relevant files in order to complete an automated de
 
 ## Prerequisites 
 This repository is assuming you already have 
-- A RedHat license to deploy Openshift
+- A RedHat license to deploy Openshift 
 - A Linux machine with Ansible installed
 
 ## Folders and files
